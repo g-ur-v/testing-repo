@@ -94,22 +94,22 @@
         <div class="reg-block-header">
             <h2>Donate</h2>         
         </div>
-
+<form action="" method="post" id="sky-form3" class="sky-form contact-style">
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input type="text" class="form-control" placeholder="Name">
+            <input type="text" name = "donate_name" class="form-control" placeholder="Name">
         </div>
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input type="text" class="form-control" placeholder="Phone Number">
+            <input type="text" name = "donate_phone" class="form-control" placeholder="Phone Number">
         </div>
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
-            <input type="text" class="form-control" placeholder="Email">
+            <input type="text" name = "donate_email" class="form-control" placeholder="Email">
         </div>
         <div class="input-group margin-bottom-20">
             <span class="input-group-addon"><i class="fa fa-lock"></i></span>
-            <input type="text" class="form-control" placeholder="Address">
+            <input type="text" name = "donate_address" class="form-control" placeholder="Address">
         </div>
         <hr>              
         <div class="row">
@@ -117,6 +117,29 @@
                 <button type="submit" class="btn-u btn-block" data-toggle="modal" data-target="#myModal">Donate</button>
             </div>
         </div>
+		<?php
+			if (isset($_POST["submit"])) {
+									
+				$d_name= $_POST["donate_name"];
+				$d_phone= $_POST["donate_phone"];
+				$d_email= $_POST["donate_email"];
+				$d_address= $_POST["donate_address"];
+				
+				
+				$servername = "localhost";
+				$username = "root";
+				$password = "";
+				$database = "rhok";
+				$conn = mysqli_connect($servername, $username, $password, $database);
+				//$sql = "INSERT INTO donate VALUES ('$d_name',$d_phone,'$d_email','$d_address')";
+				$sql = "INSERT INTO donate VALUES ('fv',0944,'vfrvtr','fv')";
+				mysqli_query($conn, $sql);
+									
+			}
+		
+		?>
+		
+		</form>
     </div>
     <!--End Reg Block-->
 </div><!--/container-->
