@@ -335,7 +335,94 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
     </section>
     <!--  About Section -->
 
-    
+    <!-- Upload Section -->
+    <section id="services">
+        <div class="container content-lg">
+            <div class="title-v1">
+                <h2>Upload Images of Garbage</h2>
+                <p>If you feel there is some litter in your locality, then please share it with us <br>by uploading pic of garbage 
+				and location so that we can clean it for you.</p>
+            </div>
+
+            <div>
+			<article> 
+			<form action="" method="post" id="sky-form3" class="sky-form contact-style">
+
+                <fieldset>
+                           <center>
+							<p style="display:inline"><input id="uploadFile" type="text" disabled="disabled" placeholder="Choose File" /></p>
+							<div class="file-upload btn btn-primary">
+								<span>Upload</span>  
+								<input class="upload" name="image" id="uploadBtn" type="file" />
+							</div>
+							<div>
+                                <input type="text" name="location" id="location" placeholder="Address">
+                            </div class=" btn btn-primary">
+							<div>
+                                <br><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark" name="submit" >Submit</button></p>
+								<?php
+									
+									if (isset($_POST["submit"])) {
+									
+									$image_1 = addslashes(file_get_contents($_FILES['image']['tmp_name']));
+									$location= $_POST["location"];
+									
+									
+									$servername = "localhost";
+									$username = "root";
+									$password = "";
+									$database = "rhok";
+									$conn = mysqli_connect($servername, $username, $password, $database);
+									$sql = "INSERT INTO image(image, location) VALUES ('$image_1','$location')";
+										 mysqli_query($conn, $sql);
+									
+									}
+								?>
+                            </div>
+							</center>
+							<script type="text/javascript">  
+								document.getElementById("uploadBtn").onchange = function () {  
+								document.getElementById("uploadFile").value = this.value;
+								};
+							</script>
+							<style>  
+								.file-upload {
+								position: relative;  
+								overflow: hidden;  
+								margin: 10px;  
+								}
+								.file-upload input.upload {
+								position: absolute;  
+								top: 0;  
+								right: 0;  
+								margin: 0;  
+								padding: 0;  
+								font-size: 20px;  
+								cursor: pointer;  
+								opacity: 0;  
+								filter: alpha(opacity=0);  
+								}
+								#uploadFile {
+								line-height: 28px;  
+								border-radius:5px;
+								}
+								#location {
+								line-height: 28px;  
+								border-radius:5px;
+								}
+								</style>
+                        </fieldset>
+					</form>
+					</article>
+            </div>
+        </div>
+
+
+      
+
+     
+    </section>
+    <!-- End Upload Section -->
     
     <!-- Contact Section -->
     <section id="contact" class="contacts-section">
@@ -362,7 +449,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <div class="row">
                                 <div class="col-md-7 margin-bottom-20 col-md-offset-0">
                                     <div>
-                                        <input type="text" name="name" id="name" class="form-control">
+                                        <input type="text" name="contact_name" id="name" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -371,7 +458,7 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <div class="row">
                                 <div class="col-md-7 margin-bottom-20 col-md-offset-0">
                                     <div>
-                                        <input type="text" name="email" id="email" class="form-control">
+                                        <input type="text" name="contact_email" id="email" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -380,12 +467,31 @@ The data-spy and data-target are part of the built-in Bootstrap scrollspy functi
                             <div class="row">
                                 <div class="col-md-11 margin-bottom-20 col-md-offset-0">
                                     <div>
-                                        <textarea rows="8" name="message" id="message" class="form-control"></textarea>
+                                        <textarea rows="8" name="contact_message" id="message" class="form-control"></textarea>
                                     </div>
                                 </div>
                             </div>
-
-                            <p><button type="submit" class="btn-u btn-brd btn-brd-hover btn-u-dark">Send Message</button></p>
+                            
+                            <p><button type="submit"name ="contact_us"  class="btn-u btn-brd btn-brd-hover btn-u-dark">Send Message</button></p>
+                            <?php
+									
+									if (isset($_POST["contact_us"])) {
+									
+									$name = $_POST["contact_name"];
+									$email= $_POST["contact_email"];
+									$message = $_POST["contact_message"];
+									
+									$servername = "localhost";
+									$username = "root";
+									$password = "";
+									$database = "rhok";
+									$conn = mysqli_connect($servername, $username, $password, $database);
+									$sql = "INSERT INTO contact VALUES ('$name','$email','$message')";
+										 mysqli_query($conn, $sql);
+									
+									}
+								?>                                                                       
+                                                                                                   
                         </fieldset>
 
                         <div class="message">
